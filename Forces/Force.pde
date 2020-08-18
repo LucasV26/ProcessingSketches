@@ -3,14 +3,13 @@ class Force{
   PVector velocity;
   PVector acceleration;
   float mass;
-  int R, G, B;
+  int R, B;
   
   Force(float m){
     this.position = new PVector(random(0, width), 1);
     this.velocity = new PVector(0, 0);
     this.acceleration = new PVector(0, 0);
     this.R = (int) random(0, 255);
-    this.G = (int) random(0, 255);
     this.B = (int) random(0, 255);
     this.mass = m;
   }
@@ -44,9 +43,9 @@ class Force{
       this.velocity.y *= -0.9;
     }
     if(this.position.y + this.mass == height){
-      float u = -0.09;
-      if(this.position.x > width/2) u = -0.005; //O chão da parte direita da tela tem atrito 10x menor
-      float n = this.mass;
+      float u = -0.1; // u = coeficiente de atrito
+      if(this.position.x > width/2) u = -0.01; //O chão da parte direita da tela tem atrito 10x menor
+      float n = this.mass; // n = normal
       PVector atrito = this.velocity.copy();
       atrito.setMag(u * n);
       this.applyForce(atrito);
@@ -55,7 +54,7 @@ class Force{
   
   void show(){
     noFill();
-    stroke(this.R, this.G, this.B);
+    stroke(this.R, 255, this.B);
     ellipse(this.position.x, this.position.y, this.mass*2, this.mass*2);
   }
 }
