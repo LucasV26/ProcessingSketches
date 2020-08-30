@@ -28,7 +28,6 @@ class Meio{
     float speed = object.velocity.magSq();
     
     dragForce.setMag(this.c * speed);
-    
     return dragForce;
   }
   
