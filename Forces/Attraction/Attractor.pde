@@ -9,6 +9,10 @@ class Attractor{
     this.mass = _mass;
   }
   
+  void move(PVector m){
+    this.position.add(m);
+  }
+  
   PVector attract(Force f){
     PVector att = PVector.sub(this.position, f.position);
     float dist = att.magSq();
