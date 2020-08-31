@@ -1,14 +1,15 @@
-int x_space = 5;
-int maxWaves = 5;
+int x_space = 1;
+int maxWaves = 2;
 
 float theta = 0;
 float[] amplitude = new float[maxWaves];
 float[] angular_velocity = new float[maxWaves];
 float[] Y;
+float H = 0;
 
 void setup(){
-  fullScreen();
-  
+  //fullScreen();
+  size(1000, 600);
   for(int i=0; i<maxWaves; i++){
     amplitude[i] = height / (maxWaves * random(1, 5));
     angular_velocity[i] = random(0.001, 0.1);
@@ -20,9 +21,9 @@ void setup(){
 
 void draw(){
   background(0);
-  fill(0, 255, 255, 100);
+  fill(0, 250, 247, 100);
   //noStroke();
-  stroke(0, 150, 255, 80);
+  stroke(0, 12, 255, 80);
   translate(0, height/2);
   
   int i=0;
@@ -31,12 +32,13 @@ void draw(){
     for(int j=0; j<maxWaves; j++){
       Y[i] += amplitude[j] * sin(theta + (i * angular_velocity[j]));
     }
-    ellipse(x, Y[i], 25, 25);
+    rect(x, Y[i], x_space, H);
     i++;
   }
   
   for(int k=0; k<maxWaves; k++){
     theta += (angular_velocity[k]) / maxWaves;
+    H += amplitude[k];
   }
 }
 
