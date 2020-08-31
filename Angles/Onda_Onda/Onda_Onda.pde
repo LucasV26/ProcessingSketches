@@ -39,3 +39,7 @@ void draw(){
     theta += (angular_velocity[k]) / maxWaves;
   }
 }
+
+void mousePressed(){
+  setup();
+}
