@@ -20,6 +20,8 @@ class Bob{
     this.angle_V = 0;
     this.angle_A = 0;
     this.drag = false;
+    this.position = new PVector(this.arm * sin(this.angle), this.arm * cos(this.angle));
+    this.position.add(this.origin);
   }
   
   boolean contains(float X, float Y){
@@ -32,6 +34,10 @@ class Bob{
       this.angle_V = 0;
       this.drag = false;
     }
+  }
+  
+  void new_or(PVector other_pos){
+    this.origin = other_pos;
   }
   
   void clicking(){
