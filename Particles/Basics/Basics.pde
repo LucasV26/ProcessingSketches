@@ -1,19 +1,30 @@
-ArrayList<Particle> particles;
+ArrayList<System> systems;
 
-void setup(){
-  particles = new ArrayList<Particle>();
-  size(800, 600);
+void setup() {
+  size(1200, 800);
+  //fullScreen();
+  systems = new ArrayList<System>();
 }
 
-void draw(){
+void draw() {
   background(0);
-  particles.add(new Particle());
-  
-  for(int i = particles.size() - 1; i >= 0; i--){
-    Particle p = particles.get(i);
-    p.update();
-    p.show();
-    
-    if(p.lifeSpan <= 0) particles.remove(i);
+
+  if (systems.size() > 20) {
+    systems.remove(0);
+    if (systems.size() > 40) {
+      systems.remove(1);
+      if (systems.size() > 60) {
+        systems.remove(2);
+      }
+    }
   }
+
+  for (System s : systems) {
+    s.addParticle();
+    s.run();
+  }
+}
+
+void mouseDragged() {
+  systems.add(new System(mouseX, mouseY));
 }
