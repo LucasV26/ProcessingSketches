@@ -14,6 +14,11 @@ class Mover{
     this.mass = _m;
   }
   
+  boolean contains(float _x, float _y){
+    PVector point = new PVector(_x, _y);
+    return (PVector.dist(this.position, point) <= this.mass);
+  }
+  
   void applyForce(PVector f){
     PVector force = PVector.div(f, this.mass);
     this.acceleration.add(force);
@@ -47,6 +52,7 @@ class Mover{
   void show(){
     noFill();
     stroke(this.R, 255, this.B);
+    if(this.contains(mouseX, mouseY)) fill(this.R, 255, this.B, 100);
     ellipse(this.position.x, this.position.y, this.mass*2, this.mass*2);
   }
 }

@@ -1,16 +1,20 @@
 Mover bob;
-float restL;
-float k;
-PVector origin;
-
+Spring[] jennys;
 
 void setup(){
   fullScreen();
   rectMode(CENTER);
-  restL = 250;
   bob = new Mover(width/2, 0, 25);
-  origin = new PVector(width/2, 0);
-  k = 0.1;
+  jennys = new Spring[8];
+  
+  jennys[0] = new Spring(width/2, 0, 100, 0.1);
+  jennys[1] = new Spring(0, height/2, 100, 0.2);
+  jennys[2] = new Spring(width, height/2, 100, 0.3);
+  jennys[3] = new Spring(width/2, height, 100, 0.4);
+  jennys[4] = new Spring(0, 0, 100, 0.5);
+  jennys[5] = new Spring(width, 0, 100, 0.6);
+  jennys[6] = new Spring(0, height, 100, 0.7);
+  jennys[7] = new Spring(width, height, 100, 0.8);
 }
 
 void draw(){
@@ -26,23 +30,34 @@ void draw(){
   
   PVector wind = new PVector(3, 0);
   
-  PVector spring = PVector.sub(bob.position, origin); // Calculando o tamanho atual a mola, tanto quanto a direção do vetor da força
-  float stretch = spring.mag() - restL; // Distorção = cumprimento atual - cumprimento de repouso
-  spring.setMag(-k * stretch); // Fórmula da força elástica
-  
   if(mousePressed){
     bob.applyForce(wind);
   }
   bob.applyForce(G); 
   bob.applyForce(air_drag);
-  bob.applyForce(spring);
   
+  for(Spring j : jennys){
+    j.show();
+    j.drag(bob);
+  }
   
   bob.show();
   bob.update();
   bob.borders();
+}
+
+void mousePressed(){
+  for(Spring j : jennys){
+    if(j.contains(mouseX, mouseY)){
+      if(j.connected) j.disconnect();
+      else
+      if(!j.connected) j.connect();
+    }
+  }
   
-  fill(150, 80);
-  rect(origin.x, origin.y, 25, 25);
-  line(bob.position.x, bob.position.y, origin.x, origin.y);
+  if(bob.contains(mouseX, mouseY)){
+    for(Spring j : jennys){
+      j.disconnect();
+    }
+  }
 }
