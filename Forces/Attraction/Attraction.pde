@@ -19,6 +19,10 @@ void setup() {
   //Sol no meio da tela
   //suns[0] = new Attractor(width/2, height/2, 1, 150);
   
+  //2 sóis nas extremidades da tela
+  //suns[0] = new Attractor(width/4, height/2, 1, 150);
+  //suns[1] = new Attractor(3*width/4, height/2, 1, 150);
+  
   //3 sóis alternados
   //suns[0] = new Attractor(width/4, 0, 1, 150);
   //suns[1] = new Attractor(3*width/4, height/2, 1, 150);
@@ -33,7 +37,7 @@ void setup() {
 }
 
 void draw() {
-  background(0);
+  //background(0);
   noFill();
   stroke(190, 255, 0);
   PVector move = new PVector(0, 0);

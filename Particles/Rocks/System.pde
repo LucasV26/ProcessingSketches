@@ -1,13 +1,11 @@
 class System {
   ArrayList<Particle> particles;
   PVector position;
-  float originalSize;
   PImage photo;
 
-  System(float _x, float _y, float _m, PImage _p) {
+  System(float _x, float _y, PImage _p) {
     particles = new ArrayList<Particle>();
     this.position = new PVector(_x, _y);
-    this.originalSize = _m;
     this.photo = _p;
   }
 
@@ -24,7 +22,7 @@ class System {
   }
 
   void addParticle() {
-    particles.add(new Rock(this.position.x, this.position.y, this.originalSize, -50, this.photo));
+    particles.add(new Rock(this.position.x, this.position.y, 50, -100, this.photo));
   }
 
   void run() {
@@ -39,7 +37,7 @@ class System {
       if (p.isDead()) {
         int qtd = (int) random(3, 6);
         for (int count = 0; count<qtd; count++) {
-          particles.add(new Rock(p.position.x, (p.position.y + (p.mass * 2)) * (this.originalSize - p.mass + 1), p.mass*2/qtd, p.position.y, this.photo));
+          particles.add(new Rock(p.position.x, (p.position.y + (p.mass*2)) + ((height - this.position.y) / 2), p.mass*2/qtd, p.position.y, this.photo));
         }
         particles.remove(i);
       }

@@ -7,7 +7,7 @@ void setup() {
   imageMode(CENTER);
   systems = new ArrayList<System>();
   rock = loadImage("Rock.png");
-  systems.add(new System(width/2, 200, 50, rock));
+  systems.add(new System(width/2, 200, rock));
 }
 
 void draw() {
@@ -21,5 +21,5 @@ void draw() {
 }
 
 void mousePressed(){
-  systems.add(new System(mouseX, mouseY, 50, rock));
+  systems.add(new System(mouseX, mouseY, rock));
 }

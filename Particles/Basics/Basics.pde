@@ -1,8 +1,7 @@
 ArrayList<System> systems;
-
 void setup() {
-  size(1200, 800);
-  //fullScreen();
+  //size(1200, 800);
+  fullScreen();
   systems = new ArrayList<System>();
 }
 
