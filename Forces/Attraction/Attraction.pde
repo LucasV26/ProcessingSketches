@@ -7,7 +7,7 @@ int quant;
 void setup() {
   //size(800, 600);
   fullScreen();
-  quant = 4;
+  quant = 5;
   
   forces = new Force[10000];  
   for (int i = 0; i < forces.length; i++) {
@@ -16,23 +16,38 @@ void setup() {
   
   suns = new Attractor[quant];
   
-  //Sol no meio da tela
-  //suns[0] = new Attractor(width/2, height/2, 1, 150);
-  
-  //2 sóis nas extremidades da tela
-  //suns[0] = new Attractor(width/4, height/2, 1, 150);
-  //suns[1] = new Attractor(3*width/4, height/2, 1, 150);
-  
-  //3 sóis alternados
-  //suns[0] = new Attractor(width/4, 0, 1, 150);
-  //suns[1] = new Attractor(3*width/4, height/2, 1, 150);
-  //suns[2] = new Attractor(width/4, height, 1, 150);
-  
-  //Sóis nos quatro pontos da tela
-  suns[0] = new Attractor(width/4, height/4, 1, 150);
-  suns[1] = new Attractor(width/4, 3*height/4, 1, 150);
-  suns[2] = new Attractor(3*width/4, height/4, 1, 150);
-  suns[3] = new Attractor(3*width/4, 3*height/4, 1, 150);
+  switch(quant){
+    case 1:
+      //Sol no meio da tela
+      suns[0] = new Attractor(width/2, height/2, 1, 150, false);
+      break;
+    case 2:
+      //2 sóis nas extremidades da tela
+      suns[0] = new Attractor(width/4, height/2, 1, 150, false);
+      suns[1] = new Attractor(3*width/4, height/2, 1, 150, false);
+      break;
+    case 3:
+      //3 sóis alternados
+      suns[0] = new Attractor(0, 0, 1, 150, false);
+      suns[1] = new Attractor(0, height, 1, 150, false);
+      suns[2] = new Attractor(width, height, 1, 150, false);
+      break;
+    case 4:
+      //Sóis nos quatro pontos da tela
+      suns[0] = new Attractor(width, height, 1, 150, false);
+      suns[1] = new Attractor(0, 0, 1, 150, false);
+      suns[2] = new Attractor(width, 0, 1, 150, false);
+      suns[3] = new Attractor(0, height, 1, 150, false);
+      break;
+    case 5:
+      //Sóis nos quatro pontos da tela
+      suns[0] = new Attractor(width, height, 1, 150, false);
+      suns[1] = new Attractor(0, 0, 1, 150, false);
+      suns[2] = new Attractor(width, 0, 1, 150, false);
+      suns[3] = new Attractor(0, height, 1, 150, false);
+      suns[4] = new Attractor(width/2, height/2, 1, 100, true);
+      break;
+  }
   background(0);
 }
 
@@ -48,10 +63,10 @@ void draw() {
   }
   
   //Desenhando os sóis
-  for(Attractor s : suns){
-    s.show();
-    s.move(move);
-  }
+  //for(Attractor s : suns){
+  //  s.show();
+  //  s.move(move);
+  //}
   
   PVector attraction;
   for (Force f : forces) {
