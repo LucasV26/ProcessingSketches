@@ -28,7 +28,7 @@ class Plataform {
     float b2dW = box2d.scalarPixelsToWorld(_w/2);
     float b2dH = box2d.scalarPixelsToWorld(_h/2);
     ps.setAsBox(b2dW, b2dH); // Utilizando variáveis convertidas de Pixels para o Mundo
-
+    
     // Criando a Fixture (Fixture é o que une o corpo ao seu formato)
     FixtureDef fd = new FixtureDef();
     fd.shape = ps; // Acoplando o formato préviamene feito à Frixture

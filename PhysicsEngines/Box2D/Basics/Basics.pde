@@ -1,3 +1,5 @@
+// Algoritmo com concenitos básicos de Box2D, como, criação de mundo, corpo estático, corpo dinâmico e ChainShape
+
 import shiffman.box2d.*;
 import org.jbox2d.collision.shapes.*;
 import org.jbox2d.common.*;
