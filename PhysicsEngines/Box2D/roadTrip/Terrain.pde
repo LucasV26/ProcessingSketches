@@ -4,8 +4,8 @@ class Terrain{
   Terrain(){
     road = new ArrayList<Vec2>();
     float theta = 0;
-    float amp = 4*height/7;
-    float freq = 0.01;
+    float amp = random(3*height/4, 6*height/7);
+    float freq = amp/30000;
     float y;
     
     for(int i = 0; i < width; i++){
@@ -25,7 +25,13 @@ class Terrain{
     BodyDef bd = new BodyDef();
     Body b = box2d.createBody(bd);
     
-    b.createFixture(cs, 1);
+    FixtureDef fd = new FixtureDef();
+    fd.shape = cs;
+    fd.friction = 1;
+    fd.density = 1.1;
+    fd.restitution = 0.3;
+    
+    b.createFixture(fd);
   }
   
   void show(){
