@@ -32,41 +32,43 @@ class ArvoreBi{
     return (alt_esq + alt_dir + 1);
   }
   
-  void preOrdem(No Arvore, float _x, float _y){
+  String preOrdem(No Arvore){
     if(Arvore == null){
-      return;
+      return " ";
     }
-    fill(255);
-    stroke(255);
-    ellipse(_x, _y, 30, 30);
-    fill(0);
-    text(Arvore.valor, _x - 5, _y);
-    this.preOrdem(Arvore.esq, _x - 45, _y + 25);
-    this.preOrdem(Arvore.dir, _x + 45, _y + 25);
+    
+    String dados = "";
+    dados += Arvore.valor + " ";
+    dados += this.preOrdem(Arvore.esq);
+    dados += this.preOrdem(Arvore.dir);
+    
+    return dados;
   }
   
-  void emOrdem(No Arvore, float _x, float _y){
+  String emOrdem(No Arvore){
     if(Arvore == null){
-      return;
+      return " ";
     }
-    this.preOrdem(Arvore.esq, _x - 45, _y + 25);
-    fill(255);
-    ellipse(_x, _y, 30, 30);
-    fill(0);
-    text(Arvore.valor, _x - 5, _y);
-    this.preOrdem(Arvore.dir, _x + 45, _y + 25);
+    
+    String dados = "";
+    dados += this.emOrdem(Arvore.esq);
+    dados += Arvore.valor + " ";
+    dados += this.emOrdem(Arvore.dir);
+    
+    return dados;
   }
   
-  void posOrdem(No Arvore, float _x, float _y){
+  String posOrdem(No Arvore){
     if(Arvore == null){
-      return;
+      return " ";
     }
-    this.preOrdem(Arvore.esq, _x - 45, _y + 25);
-    this.preOrdem(Arvore.dir, _x + 45, _y + 25);
-    fill(255);
-    ellipse(_x, _y, 30, 30);
-    fill(0);
-    text(Arvore.valor, _x - 5, _y);
+    
+    String dados = "";
+    dados += this.posOrdem(Arvore.esq);
+    dados += this.posOrdem(Arvore.dir);
+    dados += Arvore.valor + " ";
+    
+    return dados;
   }
   
   void insereNo(int valor){
@@ -96,5 +98,58 @@ class ArvoreBi{
         ant.esq = novoNo;
       }
     }
+  }
+  
+  void removeNo(int valor){
+    if(this.Raiz == null){
+      return;
+    }
+    No atual, ant;
+    atual = this.Raiz;
+    ant = null;
+    
+    while(atual != null){
+      if(atual.valor == valor){
+        if(atual == this.Raiz){
+          this.Raiz = this.removeAtual(atual);
+        }else{
+          if(valor > ant.valor){
+            ant.dir = this.removeAtual(atual);
+          }else{
+            ant.esq = this.removeAtual(atual);
+          }
+        }
+        return;
+      }
+      
+      ant = atual;
+      if(valor > atual.valor){
+        atual = atual.dir;
+      }else{
+        atual = atual.esq;
+      }
+    }
+  }
+  
+  No removeAtual(No atual){
+    No no1, no2;
+    if(atual.esq == null){
+      no2 = atual.dir;
+      atual = null;
+      return no2;
+    }
+    no1 = atual;
+    no2 = atual.esq;
+    while(no2.dir != null){
+      no1 = no2;
+      no2 = no2.dir;
+    }
+    if(no1 != atual){
+      no1.dir = no2.esq;
+      no2.esq = atual.esq;
+    }
+    no2.dir = atual.dir;
+    atual = null;
+    return no2;
   }
 }
