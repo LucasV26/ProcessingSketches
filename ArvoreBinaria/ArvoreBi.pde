@@ -5,6 +5,20 @@ class ArvoreBi{
     this.Raiz = null;
   }
   
+  void show(No atual, float _x, float _y){
+     if(atual == null){
+       return;
+     }
+     stroke(255, 0, 0);
+     fill(255);
+     ellipse(_x, _y, 50, 50);
+     fill(0);
+     text(atual.valor, _x - 10, _y + 5);
+     
+     this.show(atual.esq, _x - 75, _y + 50);
+     this.show(atual.dir, _x + 75, _y + 50);
+  }
+  
   int alturaArvore(No Arvore){
     if(Arvore == null){
       return 0;

@@ -5,22 +5,14 @@ void setup(){
   background(0);
   arv = new ArvoreBi();
   
-  arv.insereNo(5);
-  arv.insereNo(11);
-  arv.insereNo(7);
-  arv.insereNo(6);
-  arv.insereNo(12);
-  arv.insereNo(13);
-  arv.insereNo(8);
-  arv.insereNo(9);
-  arv.insereNo(-1);
 }
 
 void draw(){
   background(0);
+  
+  arv.show(arv.Raiz, width/2, 50);
+  
   fill(255);
-  
-  
   text("Quantidade de nós: " + arv.quantNos(arv.Raiz), 20, 20);
   text("Altura da árvore: " + arv.alturaArvore(arv.Raiz), 20, 40);
   
@@ -30,6 +22,8 @@ void draw(){
 }
 
 void mousePressed(){
-  // Ao remover o Nó 11 a maior folha da sub-árvore esquerda assume seu lugar
-  arv.removeNo(11);
+  /*// Ao remover o Nó 11 a maior folha da sub-árvore esquerda assume seu lugar
+  arv.removeNo(11);*/
+  
+  arv.insereNo(int(random(1000)));
 }
