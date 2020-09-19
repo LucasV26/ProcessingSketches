@@ -20,16 +20,19 @@ class Box {
     PolygonShape ps = new PolygonShape();
     float b2dW = box2d.scalarPixelsToWorld(this.w/2);
     float b2dH = box2d.scalarPixelsToWorld(this.h/2);
-    ps.setAsBox(b2dW, b2dH);
+    ps.setAsBox(b2dW, b2dH); 
     
     FixtureDef fd = new FixtureDef();
     fd.shape = ps;
     
-    fd.density = 1;
+    fd.density = 0.7;
     fd.friction = 0.3;
-    fd.restitution = 0.5;
+    fd.restitution = 1;
     
     this.body.createFixture(fd);
+    
+    this.body.setLinearVelocity(new Vec2(random(-5, 5), random(-5, 0)));
+    this.body.setAngularVelocity(random(-5, 5));
   }
   
   boolean contains(float _x, float _y){

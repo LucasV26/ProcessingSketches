@@ -8,9 +8,11 @@ import org.jbox2d.dynamics.*;
 
 Box2DProcessing box2d;
 
-Box b;
+ArrayList<Box> boxes;
 
 Spring s;
+
+Plataform pl, pt, pr, pb, pm;
 
 void setup() {
   size(1200, 800);
@@ -20,9 +22,15 @@ void setup() {
   box2d = new Box2DProcessing(this);
   box2d.createWorld();
   
-  b = new Box(width/2, height/2);
+  boxes = new ArrayList<Box>();
   
   s = new Spring();
+  
+  pl = new Plataform(5, height/2, 5, height, 0);
+  pt = new Plataform(width/2, 5, width, 5, 0);
+  pr = new Plataform(width-5, height/2, 5, height, 0);
+  pb = new Plataform(width/2, height-5, width, 5, 0);
+  pm = new Plataform(width/2, height/2, width/2, 5, PI/5);
 }
 
 void draw() {
@@ -30,11 +38,19 @@ void draw() {
   
   box2d.step();
   
-  b.show();
+  for(Box b : boxes){
+    b.show();
+  }
   
   s.update(mouseX, mouseY);
   
   s.show();
+  
+  pl.show();
+  pt.show();
+  pr.show();
+  pb.show();
+  pm.show();
   
   fill(255);
   if(mouseX > 10 && mouseX < 70 && mouseY > 20 && mouseY < 40)
@@ -45,8 +61,16 @@ void draw() {
 }
 
 void mousePressed(){
-  if(b.contains(mouseX, mouseY)){
-    s.createJoint(mouseX, mouseY, b);
+  boolean goOn = true;
+  for(Box b : boxes){
+    if(b.contains(mouseX, mouseY)){
+      s.createJoint(mouseX, mouseY, b); 
+      goOn = false;
+    }
+  }
+  
+  if(goOn){
+    boxes.add(new Box(mouseX, mouseY));
   }
   
   if(mouseX > 10 && mouseX < 70 && mouseY > 20 && mouseY < 40)

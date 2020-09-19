@@ -17,8 +17,8 @@ class Spring{
     
     // Configurações físicas sobre o elástico
     mjd.maxForce = 1000.0 * b.body.m_mass;
-    mjd.frequencyHz = 50.0;
-    mjd.dampingRatio = 0.9;
+    mjd.frequencyHz = 60.0;
+    mjd.dampingRatio = 0.8;
     
     this.string = (MouseJoint) box2d.createJoint(mjd);
   }
