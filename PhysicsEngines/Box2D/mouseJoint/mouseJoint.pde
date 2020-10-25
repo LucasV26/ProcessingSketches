@@ -15,7 +15,7 @@ Spring s;
 Plataform pl, pt, pr, pb, pm;
 
 void setup() {
-  size(1200, 800);
+  size(1200, 600);
   background(0);
   rectMode(CENTER);
 
@@ -35,6 +35,8 @@ void setup() {
 
 void draw() {
   background(0);
+  
+  boxes.add(new Box(random(width), random(height)));
   
   box2d.step();
   
