@@ -21,17 +21,21 @@ class Cluster{
   }
   
   void show(){
-    for(Particle p : particles){
-      p.show();
+    if(showPoints){
+      for(Particle p : particles){
+        p.show();
+      }
     }
     
     stroke(255, 80);
     
-    for(int i = 1; i < particles.size(); i++){
-      Particle p1 = particles.get(i);
-      for(int j = 0; j < i; j++){
-        Particle p2 = particles.get(j);
-        line(p1.x, p1.y, p2.x, p2.y);
+    if(showLines){
+      for(int i = 1; i < particles.size(); i++){
+        Particle p1 = particles.get(i);
+        for(int j = 0; j < i; j++){
+          Particle p2 = particles.get(j);
+          line(p1.x, p1.y, p2.x, p2.y);
+        }
       }
     }
   }
