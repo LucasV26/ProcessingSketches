@@ -3,11 +3,13 @@ class Particle extends VerletParticle2D {
     super(position);
     
     world.addParticle(this);
+    world.addBehavior(new AttractionBehavior2D(this, 100, -1.2f));
   }
 
   void show() {
     stroke(255);
-    noFill();
-    point(this.x, this.y);
+    fill(0, 0, 255);
+    //point(this.x, this.y);
+    ellipse(this.x, this.y, 5, 5);
   }
 }

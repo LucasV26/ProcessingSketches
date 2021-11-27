@@ -6,7 +6,7 @@ class Attractor extends VerletParticle2D {
     this.mass = mass;
     
     world.addParticle(this);
-    world.addBehavior(new AttractionBehavior2D(this, mass*4, mass/1000));
+    world.addBehavior(new AttractionBehavior2D(this, mass + 100, mass/1000));
   }
   
   
