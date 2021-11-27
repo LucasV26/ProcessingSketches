@@ -25,5 +25,5 @@ void mousePressed(){
   /*// Ao remover o Nó 11 a maior folha da sub-árvore esquerda assume seu lugar
   arv.removeNo(11);*/
   
-  arv.insereNo(int(random(1000)));
+  arv.insereNo(int(random(-1000, 1000)));
 }
