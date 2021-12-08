@@ -8,6 +8,7 @@ final int NUM_VEHICLES = 1000;
 boolean showGrid = false;
 boolean changeOverTime = false;
 boolean paintScreen = true;
+boolean showVehicles = true;
 
 void setup() {
   fullScreen();
@@ -26,17 +27,19 @@ void draw() {
   if(!paintScreen)
     background(0);
   
-  for(int i = 0; i < vs.size(); i++){
-    Vehicle v = vs.get(i);
-    
-    for(int j = 0; j < vs.size(); j++){
-      if(i != j){
-        Vehicle other = vs.get(j);
-        v.spread(other);
+  if(showVehicles){
+    for(int i = 0; i < vs.size(); i++){
+      Vehicle v = vs.get(i);
+      
+      for(int j = 0; j < vs.size(); j++){
+        if(i != j){
+          Vehicle other = vs.get(j);
+          v.spread(other);
+        }
       }
+      
+      v.run(g);
     }
-    
-    v.run(g);
   }
   
   if(changeOverTime){
@@ -53,7 +56,8 @@ void draw() {
   text("'S': grid arrows: " + (showGrid ? "on" : "off"), width - 180, height - 170);
   text("'C': dynamic grid: " + (changeOverTime ? "on" : "off"), width - 180, height - 150);
   text("'P': leave marks: " + (paintScreen ? "on" : "off"), width - 180, height - 130);
-  text("'N': new grid pattern", width - 180, height - 100);
+  text("'V': vehicles: " + (showVehicles ? "on" : "off"), width - 180, height - 110);
+  text("'N': new grid pattern", width - 180, height - 90);
 }
 
 void keyPressed() {
@@ -61,6 +65,8 @@ void keyPressed() {
     paintScreen = !paintScreen;
   if(key == 's')
     showGrid = !showGrid;
+  if(key == 'v')
+    showVehicles = !showVehicles;
   if(key == 'c')
     changeOverTime = !changeOverTime;
   if(key == 'n')

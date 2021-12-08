@@ -50,7 +50,7 @@ class Grid {
     float arrowSize = 4;
     
     translate(x, y);
-    stroke(255, 0, 0);
+    stroke(0, 255, 0);
     rotate(vector.heading());
     
     float size = vector.mag() * scale;

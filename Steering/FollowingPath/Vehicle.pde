@@ -66,7 +66,7 @@ class Vehicle {
   void display() {
     pushMatrix();
     fill(255);
-    stroke(0, 0, 255);
+    stroke(150, 0, 255);
     strokeWeight(1);
     
     translate(this.position.x, this.position.y);
